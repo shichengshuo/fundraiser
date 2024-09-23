@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="cont">
+            <a class="logo">Crowdfunding</a>
+            <div class="nav">
+                <a href="./home.html">Home</a>
+                <a href="./search.html">Search</a>
+            </div>
+        </div>
+    </div>
+    <h3 class="cont">Layout</h3>
+    <div class="container cont"></div>
+    <script>
+        function test() {
+            fetch(`http://localhost:3000/test`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('data',data)
+                })
+        }
+        test()
+    </script>
+</body>
+</html>
