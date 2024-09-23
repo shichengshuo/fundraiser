@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="cont">
+            <a class="logo">Crowdfunding</a>
+            <div class="nav">
+                <a href="./home.html">Home</a>
+                <a href="./search.html">Search</a>
+            </div>
+        </div>
+    </div>
+    <h3 class="cont">Home</h3>
+    <div class="container cont"></div>
+    <script>
+        let categories = []
+
+        // 渲染
+        function renderList(fundraisers) {
+            const fundraiserList = document.querySelector('.container');
+            fundraiserList.innerHTML = '';
+
+            if (fundraisers.length === 0) {
+                fundraiserList.innerHTML = '<p>empty</p>';
+                return;
+            }
+            fundraisers.forEach(item => {
+                item['CATEGORY_NAME'] = categories.find(c => item.CATEGORY_ID == c.CATEGORY_ID).NAME
+                return item
+            })
+            fundraisers.forEach(fundraiser => {
+                const fundraiserCard = document.createElement('div');
+                fundraiserCard.className = 'card';
+                fundraiserCard.innerHTML = `
+                    <h3>${fundraiser.CAPTION}</h3>
+                    <p>Organizer: ${fundraiser.ORGANIZER}</p>
+                    <p>Category: ${fundraiser.CATEGORY_NAME}</p>
+                    <p>Target Funding: $${fundraiser.TARGET_FUNDING}</p>
+                    <p>Current Funding: $${fundraiser.CURRENT_FUNDING}</p>
+                    <p>City: ${fundraiser.CITY}</p>
+                    <a href="/fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">View Details</a>
+                `;
+                fundraiserList.appendChild(fundraiserCard);
+            });
+        }
+
+        // 获取
+        function getFundraisers() {
+            fetch('http://localhost:3000/fundraisers')
+                .then(response => response.json())
+                .then(data => {
+                    renderList(data);
+                })
+        }
+
+        fetch('http://localhost:3000/categories').then(response => response.json())
+            .then(data => {
+                categories = data
+                getFundraisers()
+            })
+    </script>
+</body>
+
+</html>
