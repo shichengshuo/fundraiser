@@ -10,9 +10,11 @@ body {
     font-size: 16px;
     box-sizing: border-box;
 }
+
 body {
     padding-top: 60px;
 }
+
 .header {
     height: 60px;
     background-color: #333;
@@ -21,35 +23,62 @@ body {
     left: 0;
     width: 100%;
 }
-.header .cont{
+
+.header .cont {
     display: flex;
     align-items: center;
 }
+
 .cont {
     width: 100%;
     max-width: 1024px;
-    margin:12px auto;
+    margin: 12px auto;
 }
 
-.logo{
+.logo {
     color: rgb(134, 205, 233);
     font-size: 20px;
     margin-right: 10px;
 }
 
-.nav a{
-    color:  #fff;
+.nav a {
+    color: #fff;
     margin-left: 10px;
     font-size: 16px;
 }
 
 
 
-.card{
+.card {
     width: 100%;
-    background: #f7f7f7;
+    background: #ededed;
     margin: 10px auto;
     padding: 10px;
     border-radius: 20px;
     line-height: 26px;
+}
+
+/* 搜索 */
+label,
+input,
+button,
+select {
+    height: 30px;
+    margin-right: 10px;
+}
+
+input,
+select {
+    width: 200px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background: #ededed;
+    padding: 10px;
+}
+
+button{
+    width: 70px;
 }

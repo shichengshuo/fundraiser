@@ -42,6 +42,37 @@ app.get("/fundraiser/:id", async (req, res) => {
     }
 });
 
+// 搜索
+app.get("/search", async (req, res) => {
+    const { organizer, city, category } = req.query;
+
+    let query = "";
+    let params  = []
+
+    if (organizer) {
+        params.push(`ORGANIZER = '${organizer}'`)
+    }
+    if (city) {
+        params.push(`CITY = '${city}'`)
+    }
+    if (category) {
+        params.push(`CATEGORY_ID = '${category}'`)
+    }
+    for (const key in params) {
+        if (key != 0) {
+            query+= `AND ${params[key]} `
+        }else{
+            query+=`WHERE ${params[key]} `
+        }
+    }
+    try {
+        const [rows] = await DB.query(`SELECT * FROM FUNDRAISER ${query}`);
+        res.status(200).send(rows);
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
 // 启动服务器
 app.listen(3000, () => {
     console.log(`http://localhost:3000/`);
