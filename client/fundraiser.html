@@ -20,6 +20,9 @@
     </div>
     <h3 class="cont">Fundraiser Details</h3>
     <div class="container cont"></div>
+
+
+
     <script>
         let categories = []
         const urlParams = new URLSearchParams(window.location.search);
@@ -47,10 +50,14 @@
                     <p>Target Funding: $${fundraiser.TARGET_FUNDING}</p>
                     <p>Current Funding: $${fundraiser.CURRENT_FUNDING}</p>
                     <p>City: ${fundraiser.CITY}</p>
-                    <a href="/fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">View Details</a>
+                    <button class='donate'>donate</button>
                 `;
                 fundraiserList.appendChild(fundraiserCard);
             });
+            document.querySelector('.donate').addEventListener('click',function () {
+                window.confirm('This feature is under contruction!')
+                
+            })
         }
 
         // 获取
@@ -68,6 +75,7 @@
                 
                 getFundraisers()
             })
+            
     </script>
 </body>
 
